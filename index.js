@@ -20,7 +20,7 @@ const inquirer = require('inquirer');
 //-----------------------------------------END INSTURCTIONS----------------------------------//
 
 
-//our prompts
+//PROMPTS
 inquirer
   .prompt([
     {
