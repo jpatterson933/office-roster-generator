@@ -6,6 +6,12 @@ const fs = require('fs');
 //our inquirer module pulled into our index.js followed by our prompts
 const inquirer = require('inquirer');
 
+//I think what I need to do is build the prompts in here for the user to ask questions. Anytime they answer
+//a prompt about a new employee, then any information for the employee that is entered, gets formatted to the paramters
+//of a class I will make for employess
+//I think I will need an exmployee class that extends to the manager, engineer, and intern classes
+//
+
 //----------------------------------INSTRUCTIONS----------------------------------//
 // WHEN I start the application
 // THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
@@ -30,8 +36,14 @@ inquirer
     },
   ])
   //then our reponses to follow
-  .then((response) => {
+  //I think I will need the responses to get exporeted to the relevant js files
+  //then I will need to plug those responses in to the parameters of the relevant classes
 
+  //so index.js will run the command line prompt to build employees
+  //then it will push the reponses to the correct pages. However, will it first need to log the reponses? 
+  //how does that work?
+  .then((response) => {
+    //could i possible even generate an javascript file??
     //all documentation to be put into the readme const
     const html = `<h1> File Generated </h1>
     
@@ -44,4 +56,6 @@ inquirer
         
     })
     
-  });
+});
+
+
