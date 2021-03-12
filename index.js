@@ -6,19 +6,13 @@ const fs = require('fs');
 //our inquirer module pulled into our index.js followed by our prompts
 const inquirer = require('inquirer');
 
-const Employee = require('./lib/employee');
+const Employee = require('./lib/employee'); // do i even need this?
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 
 //set a team to an empty array to be pushed into when any team member is created
 const team = [];
-
-//I think what I need to do is build the prompts in here for the user to ask questions. Anytime they answer
-//a prompt about a new employee, then any information for the employee that is entered, gets formatted to the paramters
-//of a class I will make for employess
-//I think I will need an exmployee class that extends to the manager, engineer, and intern classes
-//
 
 //----------------------------------INSTRUCTIONS----------------------------------//
 // WHEN I start the application
@@ -32,8 +26,8 @@ const team = [];
 // WHEN I decide to finish building my team
 // THEN I exit the application, and the HTML is generated
 //-----------------------------------------END INSTURCTIONS----------------------------------//
-//commented out getInfo() function so i coudl test prompts
-// function getInfo () {
+
+function getEmployeeInfo (teamMembers) {
     //prompts all include validate statements to make sure the user if providing input
     inquirer
         .prompt([
@@ -84,106 +78,114 @@ const team = [];
             }
         ])
         //following if and if else statements answer the relevant questions based upon which role the user chooses for the new team member
-        .then(answers => {
-            if (answers.role === 'Manager') {
+        .then(basicInfo => {
+            if (basicInfo.role === 'Manager') {
+                //how do i check to see if there are more than 2 managers and display a message that says, you have such and such mangers
+                // are you sure you want to add more?
                 inquirer
                     .prompt ([
                         {
                             type: 'input',
-                            message: `What is ${answers.name}'s office number?`,
+                            message: `What is ${basicInfo.name}'s office number?`,
                             name: 'office',
                             validate: checkInput => {
                                 if (checkInput) {
                                     return true;
                                 } else {
-                                    console.log(`Please enter ${answers.name}'s office number!`)
+                                    console.log(`Please enter ${basicInfo.name}'s office number!`)
                                     return false;
                                 }
                             }
                         },
                     ])
-                    //pushes new mangaer into team array
+                    //pushes new manager into team array
                     .then (ans => {
-                        const newManager = new Manager (answers.name, answers.id, answers.email, answers.role, ans.office);
+                        const newManager = new Manager (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, ans.office);
+                        
                         team.push(newManager)
+
+                        //create a funcitonthat asks the user if they want to enter more employees and if they select yes
+                        //the function would rerun
+                        addMore(team)
+                        //also this is where my add more function will go
+                        //call function here to display html - function should include template literal 
                     })
-            } else if (answers.role === 'Engineer') {
+            } else if (basicInfo.role === 'Engineer') {
                 inquirer
                     .prompt ([
                         {
                             type: 'input',
-                            message: `What is ${answers.name}'s GitHub username?`,
+                            message: `What is ${basicInfo.name}'s GitHub username?`,
                             name: 'git',
                             validate: checkInput => {
                                 if (checkInput) {
                                     return true;
                                 } else {
-                                    console.log(`Please enter ${answers.name}'s GitHub username!`)
+                                    console.log(`Please enter ${basicInfo.name}'s GitHub username!`)
                                     return false;
                                 }
                             }
                         }
                     ])
                     .then (ans => {
-                        const newEngineer = new Engineer (answers.name, answers.id, answers.email, answers.role, ans.git);
+                        const newEngineer = new Engineer (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, ans.git);
+                        
                         team.push(newEngineer)
+
+                        //add more team function
+                        addMore(team)
                     })
-            } else if (answers.role === 'Intern') {
+            } else if (basicInfo.role === 'Intern') {
                 inquirer
                     .prompt ([
                         {
                             type: 'input',
-                            message: `Which school is ${answers.name} attending?`,
+                            message: `Which school is ${basicInfo.name} attending?`,
                             name: 'school',
                             validate: checkInput => {
                                 if (checkInput) {
                                     return true;
                                 } else {
-                                    console.log(`Please enter which school ${answers.name} is attending!`)
+                                    console.log(`Please enter which school ${basicInfo.name} is attending!`)
                                     return false;
                                 }
                             }
                         }
                     ])
                     .then (ans => {
-                        const newIntern = new Intern (answers.name, answers.id, answers.email, answers.role, ans.school);
+                        const newIntern = new Intern (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, ans.school);
                         team.push(newIntern)
+
+                        //add more team mates function and entering team as the parameter
+                        addMore(team)
                     })
             }
         })
-//commented out getInfo() function so i could test prompts
-// }
-
-//PROMPTS
-// inquirer
-//   .prompt([
-//     {
-//       type: 'input',
-//       message: 'What is your employees name?',
-//       name: 'name',
-//     },
-//   ])
-//   //then our reponses to follow
-//   //I think I will need the responses to get exporeted to the relevant js files
-//   //then I will need to plug those responses in to the parameters of the relevant classes
-
-//   //so index.js will run the command line prompt to build employees
-//   //then it will push the reponses to the correct pages. However, will it first need to log the reponses? 
-//   //how does that work?
-//   .then((response) => {
-//     //could i possible even generate an javascript file??
-//     //all documentation to be put into the readme const
-//     const html = `<h1> File Generated </h1>
+    }
     
-//     ${response.name}`
+    //function to add more 
+function addMore(currentTeam) {
+    inquirer.prompt([
+        {
+            type: 'confirm',
+            message: 'Would you like to add another team member?',
+            name: 'add',
+        }
+    ])
+    .then(resp => {
+        if (resp.add === true) {
+            getEmployeeInfo()
+        } else {
+            console.log('team', currentTeam)
+            //should append here are
+            //call function to append html here 
+        }
+    })
+}
 
+//make another function and call that function inside that then 
+//write the function - outside and then call the function inside and use the responses as the parameter
+//function for each employee
 
-//       //here we are writing the readme.md file with the readme const else throw an error if not, console.log to the user the proces has finished
-//       fs.writeFile('index.html', html, err => {
-//         err ? console.log(err) : console.log("Your HTML Roster has been displayed");
-        
-//     })
-    
-// });
-
-
+//create a function to append html
+getEmployeeInfo()
