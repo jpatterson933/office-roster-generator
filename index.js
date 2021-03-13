@@ -175,9 +175,8 @@ function addMore(currentTeam) {
             getEmployeeInfo()
         } else {
             console.log('team', currentTeam)
+            //this function appends html
             displayTeam(team)
-            //should append here are
-            //call function to append html here 
 
         }
     })
@@ -186,6 +185,7 @@ function addMore(currentTeam) {
 
 function displayTeam(fullTeam) {
     //i need to loop through team, and then append fullTeam.name, fullTeam.id to the card places and create the cards.
+
     const htmlFile = `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -209,23 +209,23 @@ function displayTeam(fullTeam) {
         </div>
         <div class="card" style="width: 18rem;">
         <div class="card-header">
-            ${fullTeam.name}
+            ${fullTeam.Manager}
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">${fullTeam.role}</li>
-          <li class="list-group-item">${fullTeam.id}</li>
-          <li class="list-group-item">${fullTeam.email}</li>
-          <li class="list-group-item">${fullTeam.specificInfo}</li>
+          <li class="list-group-item">${fullTeam}</li>
+          <li class="list-group-item">${fullTeam}</li>
+          <li class="list-group-item">${fullTeam.Manager}</li>
+          <li class="list-group-item">${fullTeam.Manager}</li>
         </ul>
       </div>
         
     </body>
     </html>`
 
-    for (let i = 0; i < fullTeam.length; i++) {
-          
+    //this console.logs full team
+    console.log(fullTeam.team.name)
 
-    }
+   
 
 
     fs.writeFile('test.html', htmlFile, err => {
