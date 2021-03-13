@@ -108,6 +108,7 @@ function getEmployeeInfo (teamMembers) {
                         addMore(team)
                         //also this is where my add more function will go
                         //call function here to display html - function should include template literal 
+
                     })
             } else if (basicInfo.role === 'Engineer') {
                 inquirer
@@ -177,26 +178,62 @@ function addMore(currentTeam) {
             displayTeam(team)
             //should append here are
             //call function to append html here 
+
         }
     })
 }
 
 
 function displayTeam(fullTeam) {
+    //i need to loop through team, and then append fullTeam.name, fullTeam.id to the card places and create the cards.
+    const htmlFile = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- here i have a reset css style sheet to reset anything that has been done by the browser
+            and i have my main css style sheet that will style my webpage -->
+            <!--jquery script-->
+            <link rel="stylesheet" href="./assets/css/reset.css">
+            <!--bootstrap style sheet-->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="./assets/css/style.css">
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+        <title>Your Team's Portfolio</title>
+    </head>
+    <body>
+        <div>
 
-    const htmlFile = ``
+        </div>
+        <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            ${fullTeam.name}
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">${fullTeam.role}</li>
+          <li class="list-group-item">${fullTeam.id}</li>
+          <li class="list-group-item">${fullTeam.email}</li>
+          <li class="list-group-item">${fullTeam.specificInfo}</li>
+        </ul>
+      </div>
+        
+    </body>
+    </html>`
 
     for (let i = 0; i < fullTeam.length; i++) {
-       
-        }
-
-
-        fs.writeFile('index.html', htmlFile, err => {
-            err ? console.log(err) : console.log("Your Team Profile has been generated.");
-            
-        })
+          
 
     }
+
+
+    fs.writeFile('test.html', htmlFile, err => {
+        err ? console.log(err) : console.log("Your Team Profile has been generated.");
+        
+    })
+
+}
 
 
 
