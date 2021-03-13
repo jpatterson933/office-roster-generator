@@ -207,3 +207,5 @@ function displayTeam(fullTeam) {
 
 //create a function to append html
 getEmployeeInfo()
+
+module.exports = getEmployeeInfo();
