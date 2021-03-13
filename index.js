@@ -14,6 +14,7 @@ const Intern = require('./lib/intern');
 //set a team to an empty array to be pushed into when any team member is created
 const team = [];
 
+
 //----------------------------------INSTRUCTIONS----------------------------------//
 // WHEN I start the application
 // THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
@@ -77,7 +78,7 @@ function getEmployeeInfo (teamMembers) {
                 choices: ['Manager', 'Engineer', 'Intern'],
             }
         ])
-        //following if and if else statements answer the relevant questions based upon which role the user chooses for the new team member
+        //following if and if else statements specificInfower the relevant questions based upon which role the user chooses for the new team member
         .then(basicInfo => {
             if (basicInfo.role === 'Manager') {
                 //how do i check to see if there are more than 2 managers and display a message that says, you have such and such mangers
@@ -99,13 +100,12 @@ function getEmployeeInfo (teamMembers) {
                         },
                     ])
                     //pushes new manager into team array
-                    .then (ans => {
-                        const newManager = new Manager (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, ans.office);
-                        
+                    .then (specificInfo => {
+                        const newManager = new Manager (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.office);
+                        //pushes new team member into empty team array  
                         team.push(newManager)
-
-                        //create a funcitonthat asks the user if they want to enter more employees and if they select yes
-                        //the function would rerun
+                        
+                        //function that prompts user and asks them if they would like to add more teammates
                         addMore(team)
                         //also this is where my add more function will go
                         //call function here to display html - function should include template literal 
@@ -127,12 +127,10 @@ function getEmployeeInfo (teamMembers) {
                             }
                         }
                     ])
-                    .then (ans => {
-                        const newEngineer = new Engineer (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, ans.git);
-                        
+                    .then (specificInfo => {
+                        const newEngineer = new Engineer (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.git);
                         team.push(newEngineer)
 
-                        //add more team function
                         addMore(team)
                     })
             } else if (basicInfo.role === 'Intern') {
@@ -152,8 +150,8 @@ function getEmployeeInfo (teamMembers) {
                             }
                         }
                     ])
-                    .then (ans => {
-                        const newIntern = new Intern (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, ans.school);
+                    .then (specificInfo => {
+                        const newIntern = new Intern (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.school);
                         team.push(newIntern)
 
                         //add more team mates function and entering team as the parameter
@@ -177,11 +175,31 @@ function addMore(currentTeam) {
             getEmployeeInfo()
         } else {
             console.log('team', currentTeam)
+            displayTeam(team)
             //should append here are
             //call function to append html here 
         }
     })
 }
+
+
+function displayTeam(fullTeam) {
+
+    const htmlFile = ``
+
+    for (let i = 0; i < fullTeam.length; i++) {
+       
+        }
+
+
+        fs.writeFile('index.html', htmlFile, err => {
+            err ? console.log(err) : console.log("Your Team Profile has been generated.");
+            
+        })
+
+    }
+
+
 
 //make another function and call that function inside that then 
 //write the function - outside and then call the function inside and use the responses as the parameter
