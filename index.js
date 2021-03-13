@@ -6,7 +6,6 @@ const fs = require('fs');
 //our inquirer module pulled into our index.js followed by our prompts
 const inquirer = require('inquirer');
 
-const Employee = require('./lib/employee'); // do i even need this?
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
