@@ -208,4 +208,6 @@ function displayTeam(fullTeam) {
 //create a function to append html
 getEmployeeInfo()
 
-module.exports = getEmployeeInfo();
+module.exports = Manager;
+module.exports = Engineer;
+module.exports = Intern;
