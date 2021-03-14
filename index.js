@@ -87,7 +87,7 @@ function getEmployeeInfo (teamMembers) {
                         {
                             type: 'input',
                             message: `What is ${basicInfo.name}'s office number?`,
-                            name: 'info',
+                            name: 'office',
                             validate: checkInput => {
                                 if (checkInput) {
                                     return true;
@@ -100,7 +100,7 @@ function getEmployeeInfo (teamMembers) {
                     ])
                     //pushes new manager into team array
                     .then (specificInfo => {
-                        const newManager = new Manager (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.info);
+                        const newManager = new Manager (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.office);
                         //pushes new team member into empty team array  
                         team.push(newManager)
                         
@@ -116,7 +116,7 @@ function getEmployeeInfo (teamMembers) {
                         {
                             type: 'input',
                             message: `What is ${basicInfo.name}'s GitHub username?`,
-                            name: 'info',
+                            name: 'git',
                             validate: checkInput => {
                                 if (checkInput) {
                                     return true;
@@ -128,7 +128,7 @@ function getEmployeeInfo (teamMembers) {
                         }
                     ])
                     .then (specificInfo => {
-                        const newEngineer = new Engineer (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.info);
+                        const newEngineer = new Engineer (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.git);
                         team.push(newEngineer)
 
                         addMore(team)
@@ -139,7 +139,7 @@ function getEmployeeInfo (teamMembers) {
                         {
                             type: 'input',
                             message: `Which school is ${basicInfo.name} attending?`,
-                            name: 'info',
+                            name: 'school',
                             validate: checkInput => {
                                 if (checkInput) {
                                     return true;
@@ -151,7 +151,7 @@ function getEmployeeInfo (teamMembers) {
                         }
                     ])
                     .then (specificInfo => {
-                        const newIntern = new Intern (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.info);
+                        const newIntern = new Intern (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.school);
                         team.push(newIntern)
 
                         //add more team mates function and entering team as the parameter
@@ -199,7 +199,7 @@ function displayTeam(fullTeam) {
           <li class="list-group-item" id="role">${fullTeam[i].role}</li>
           <li class="list-group-item">${fullTeam[i].id}</li>
           <li class="list-group-item">${fullTeam[i].email}</li>
-          <li class="list-group-item">${fullTeam[i].office}</li>
+          <li class="list-group-item">${fullTeam[i].office || fullTeam[i].school || fullTeam[i].gitHub}</li>
         </ul>
       </div>`
 
