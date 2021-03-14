@@ -12,6 +12,7 @@ const Intern = require('./lib/intern');
 
 //set a team to an empty array to be pushed into when any team member is created
 const team = [];
+let choices = ['Manager', 'Engineer', 'Intern']
 
 
 //----------------------------------INSTRUCTIONS----------------------------------//
@@ -26,7 +27,7 @@ const team = [];
 // WHEN I decide to finish building my team
 // THEN I exit the application, and the HTML is generated
 //-----------------------------------------END INSTURCTIONS----------------------------------//
-
+                            //i dont think i need this parameter
 function getEmployeeInfo (teamMembers) {
     //prompts all include validate statements to make sure the user if providing input
     inquirer
@@ -74,7 +75,7 @@ function getEmployeeInfo (teamMembers) {
                 type: 'list',
                 message: 'What is their role?',
                 name: 'role',
-                choices: ['Manager', 'Engineer', 'Intern'],
+                choices: choices,
             }
         ])
         //following if and if else statements specificInfower the relevant questions based upon which role the user chooses for the new team member
@@ -82,6 +83,9 @@ function getEmployeeInfo (teamMembers) {
             if (basicInfo.role === 'Manager') {
                 //how do i check to see if there are more than 2 managers and display a message that says, you have such and such mangers
                 // are you sure you want to add more?
+
+                //this removes manager from our choices
+                choices = choices.slice(1)
                 inquirer
                     .prompt ([
                         {
@@ -100,6 +104,7 @@ function getEmployeeInfo (teamMembers) {
                     ])
                     //pushes new manager into team array
                     .then (specificInfo => {
+                        managerPosition = true;
                         const newManager = new Manager (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.office);
                         //pushes new team member into empty team array  
                         team.push(newManager)
@@ -160,7 +165,8 @@ function getEmployeeInfo (teamMembers) {
             }
         })
     }
-    
+
+//id want to use a boolean to check to seee if the manager role is filled
     //function to add more 
 function addMore(currentTeam) {
     inquirer.prompt([
@@ -204,7 +210,6 @@ function displayTeam(fullTeam) {
       </div>`
 
       htmlCards.push(newCard)
-
         console.log(fullTeam[i].name)
 
     }
