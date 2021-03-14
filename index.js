@@ -87,7 +87,7 @@ function getEmployeeInfo (teamMembers) {
                         {
                             type: 'input',
                             message: `What is ${basicInfo.name}'s office number?`,
-                            name: 'office',
+                            name: 'info',
                             validate: checkInput => {
                                 if (checkInput) {
                                     return true;
@@ -100,7 +100,7 @@ function getEmployeeInfo (teamMembers) {
                     ])
                     //pushes new manager into team array
                     .then (specificInfo => {
-                        const newManager = new Manager (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.office);
+                        const newManager = new Manager (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.info);
                         //pushes new team member into empty team array  
                         team.push(newManager)
                         
@@ -116,7 +116,7 @@ function getEmployeeInfo (teamMembers) {
                         {
                             type: 'input',
                             message: `What is ${basicInfo.name}'s GitHub username?`,
-                            name: 'git',
+                            name: 'info',
                             validate: checkInput => {
                                 if (checkInput) {
                                     return true;
@@ -128,7 +128,7 @@ function getEmployeeInfo (teamMembers) {
                         }
                     ])
                     .then (specificInfo => {
-                        const newEngineer = new Engineer (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.git);
+                        const newEngineer = new Engineer (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.info);
                         team.push(newEngineer)
 
                         addMore(team)
@@ -139,7 +139,7 @@ function getEmployeeInfo (teamMembers) {
                         {
                             type: 'input',
                             message: `Which school is ${basicInfo.name} attending?`,
-                            name: 'school',
+                            name: 'info',
                             validate: checkInput => {
                                 if (checkInput) {
                                     return true;
@@ -151,7 +151,7 @@ function getEmployeeInfo (teamMembers) {
                         }
                     ])
                     .then (specificInfo => {
-                        const newIntern = new Intern (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.school);
+                        const newIntern = new Intern (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.info);
                         team.push(newIntern)
 
                         //add more team mates function and entering team as the parameter
@@ -186,6 +186,31 @@ function addMore(currentTeam) {
 function displayTeam(fullTeam) {
     //i need to loop through team, and then append fullTeam.name, fullTeam.id to the card places and create the cards.
 
+    const htmlCards = [];
+    
+
+    for (let i = 0; i < fullTeam.length; i++) {
+
+        const newCard = `<div class="card" style="width: 18rem;">
+        <div class="card-header" id="name">
+            ${fullTeam[i].name}
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" id="role">${fullTeam[i].role}</li>
+          <li class="list-group-item">${fullTeam[i].id}</li>
+          <li class="list-group-item">${fullTeam[i].email}</li>
+          <li class="list-group-item">${fullTeam[i].office}</li>
+        </ul>
+      </div>`
+
+      htmlCards.push(newCard)
+
+        console.log(fullTeam[i].name)
+
+    }
+
+
+
     const htmlFile = `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -204,29 +229,13 @@ function displayTeam(fullTeam) {
         <title>Your Team's Portfolio</title>
     </head>
     <body>
-        <div>
-
+        <div id="team-cards">
+        ${htmlCards}
+        
         </div>
-        <div class="card" style="width: 18rem;">
-        <div class="card-header">
-            ${fullTeam.Manager}
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">${fullTeam}</li>
-          <li class="list-group-item">${fullTeam}</li>
-          <li class="list-group-item">${fullTeam.Manager}</li>
-          <li class="list-group-item">${fullTeam.Manager}</li>
-        </ul>
-      </div>
         
     </body>
     </html>`
-
-    //this console.logs full team
-    console.log(fullTeam.team.name)
-
-   
-
 
     fs.writeFile('test.html', htmlFile, err => {
         err ? console.log(err) : console.log("Your Team Profile has been generated.");
