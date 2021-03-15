@@ -105,9 +105,11 @@ function getEmployeeInfo (teamMembers) {
                     //pushes new manager into team array
                     .then (specificInfo => {
                         managerPosition = true;
-                        const newManager = new Manager (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.office);
+                        const newManager = new Manager (basicInfo.name, basicInfo.id, basicInfo.email, "Project " + basicInfo.role, "Office Number: " + specificInfo.office);
                         //pushes new team member into empty team array  
                         team.push(newManager)
+
+                        
                         
                         //function that prompts user and asks them if they would like to add more teammates
                         addMore(team)
@@ -133,7 +135,7 @@ function getEmployeeInfo (teamMembers) {
                         }
                     ])
                     .then (specificInfo => {
-                        const newEngineer = new Engineer (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.git);
+                        const newEngineer = new Engineer (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, "GitHub Username: " + specificInfo.git);
                         team.push(newEngineer)
 
                         addMore(team)
@@ -156,7 +158,7 @@ function getEmployeeInfo (teamMembers) {
                         }
                     ])
                     .then (specificInfo => {
-                        const newIntern = new Intern (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, specificInfo.school);
+                        const newIntern = new Intern (basicInfo.name, basicInfo.id, basicInfo.email, basicInfo.role, "School: " + specificInfo.school);
                         team.push(newIntern)
 
                         //add more team mates function and entering team as the parameter
@@ -198,14 +200,14 @@ function displayTeam(fullTeam) {
     for (let i = 0; i < fullTeam.length; i++) {
 
         const newCard = `<div class="card" style="width: 18rem;">
-        <div class="card-header" id="name">
+        <div class="card-header name">
             ${fullTeam[i].name}
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item" id="role">${fullTeam[i].role}</li>
-          <li class="list-group-item">${fullTeam[i].id}</li>
-          <li class="list-group-item">${fullTeam[i].email}</li>
-          <li class="list-group-item">${fullTeam[i].office || fullTeam[i].school || fullTeam[i].gitHub}</li>
+          <li class="list-group-item role">${fullTeam[i].role}</li>
+          <li class="list-group-item id">ID No. ${fullTeam[i].id}</li>
+          <li class="list-group-item email">Email: ${fullTeam[i].email}</li>
+          <li class="list-group-item info">${fullTeam[i].office || fullTeam[i].school || fullTeam[i].gitHub}</li>
         </ul>
       </div>`
 
@@ -226,6 +228,11 @@ function displayTeam(fullTeam) {
             and i have my main css style sheet that will style my webpage -->
             <!--jquery script-->
             <link rel="stylesheet" href="./assets/css/reset.css">
+            <!--Google Fonts styling sheets for names-->
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&display=swap" rel="stylesheet">
+            <!--Google fonts styling sheet for rest of card-->
+            <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@200&family=Fira+Code:wght@300&display=swap" rel="stylesheet">
             <!--bootstrap style sheet-->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
             <link rel="stylesheet" href="./assets/css/style.css">
@@ -234,9 +241,9 @@ function displayTeam(fullTeam) {
         <title>Your Team's Portfolio</title>
     </head>
     <body>
+        <h1>Project Roster</h1>
         <div id="team-cards">
         ${htmlCards}
-        
         </div>
         
     </body>
