@@ -4,6 +4,8 @@
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)](https://bitbucket.org/lbesson/ansi-colors)
 
+[Walkthrough Video](https://youtu.be/7A-K7CLKtVk)
+
 # Table of Contents
 1. [License MIT](#license-information)
 2. [Description](#application-description)
@@ -26,19 +28,28 @@ this software or any code within this application.
 
 # Application Description
 
-By inputting into the terminal your teams name, identification number, email, and other information, kyou can create a fully displayed webpage that displays your team roster in clean cards.
+By inputting into the terminal your teams name, identification number, email, and other information, you can create a fully displayed webpage that displays your team roster in clean cards.
 
 [Back to Top](#table-of-contents)
 
 # Installation Instructions
 
-To install, you will need to make sure your system has VS code, then git clone this repository, in the terminal npm install inquirer and jest, npm run tests to test the functionality of the code, and at this point if the tests pass, everything should be installed correctly.
+To install, you will need to make sure your system has VS code, then git clone this repository, in the terminal npm install inquirer and jest, npm run tests to test the functionality of the code, and at this point if the tests pass, everything should be installed correctly. Make sure these files exist inside of your package.json
+
+  "dependencies": { <br>
+    "inquirer": "^8.0.0"
+  }, <br><br>
+  "devDependencies": { <br>
+    "jest": "^26.6.3"
+  },<br><br>
+  "scripts": { <br>
+    "test": "jest" },
 
 [Back to Top](#table-of-contents)
 
 # Application Usage
 
-To use this application, you can watch the follow along video and follow these instructions or just follow these intructions. Once the application is fully installed and the tests pass, open the terminal, and enter in your teams information. Keep in mind, each team can only have on project manager. If you have more than one project manager, you should use a different applicaiton. If you would like to add more teammates, continue to add them until you are finished and then type n and press enter. Once you do this, a full html page will generate with your teams information on it.
+To use this application, you can watch and follow along with the video and follow these instructions or just follow these intructions. Once the application is fully installed and the tests pass, open the terminal, and enter in your teams information. Keep in mind, each team can only have one project manager. If you have more than one project manager, you should use a different applicaiton. If you would like to add more teammates, continue to add them until you are finished and then type n and press enter. Once you do this, a full html page will generate with your teams information on it.
 
 [Back to Top](#table-of-contents)
 
@@ -50,7 +61,7 @@ There are no contribution guidelines for this project. However, if you would lik
 
 # Testing Instrutions
 
-To test, make sure you follow the installation instructions above. Then check your package.json and make sure you have jest inside your scripts. Open up your terminal, type in npm run tests, and watch the tests that are installed in the __tests__ file either pass or fail. At this point ALL tests should pass and there should be no errors when you first git clone. If errors begin generating, you will know you have done something wrong.
+To test, make sure you follow the installation instructions above. Once the application has been coloned onto your computer, run an npm install inside of your open terminal. <br> Once inside of your terminal, type npm run test and watch the tests that are installed in the __tests__ file either pass or fail. At this point ALL tests should pass and there should be no errors when you first git clone. If errors begin generating, you will know you have done something wrong.
 
 [Back to Top](#table-of-contents)
 

@@ -224,8 +224,6 @@ function displayTeam(fullTeam) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- here i have a reset css style sheet to reset anything that has been done by the browser
-            and i have my main css style sheet that will style my webpage --
             <!--Google Fonts styling sheets for names-->
             <link rel="preconnect" href="https://fonts.gstatic.com">
             <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&display=swap" rel="stylesheet">
