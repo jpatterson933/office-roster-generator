@@ -12,7 +12,7 @@ h1 {
 #team-cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .card {
