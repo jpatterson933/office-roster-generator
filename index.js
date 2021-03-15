@@ -225,7 +225,7 @@ function displayTeam(fullTeam) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- here i have a reset css style sheet to reset anything that has been done by the browser
-            and i have my main css style sheet that will style my webpage -->
+            and i have my main css style sheet that will style my webpage --
             <!--Google Fonts styling sheets for names-->
             <link rel="preconnect" href="https://fonts.gstatic.com">
             <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&display=swap" rel="stylesheet">
@@ -233,7 +233,7 @@ function displayTeam(fullTeam) {
             <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@200&family=Fira+Code:wght@300&display=swap" rel="stylesheet">
             <!--bootstrap style sheet-->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-            <link rel="stylesheet" href="./assets/css/style.css">
+            <link rel="stylesheet" href="Assets/css/style.css">
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     
         <title>Your Team's Portfolio</title>
